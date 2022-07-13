@@ -1,0 +1,25 @@
+<%= form_with model: @order do |f| %>
+  <div class="mb-4 mt-4 ">
+  <%= f.label :client_name, class:'form-label'%>
+  <%= f.text_field :client_name, class: 'form-control'  %>
+  </div> 
+
+  <div class="mb-4">
+  <%= f.label :car_model, class:'form-label'%>
+  <%= f.text_field :car_model, class: 'form-control'  %> 
+  </div>
+
+  <div class="mb-4">
+  <%= f.label :car_number, class:'form-label'%>
+  <%= f.text_field :car_number, class: 'form-control' %>
+  </div>
+
+  <div class="mb-4">
+  <%= f.label :services, class:'form-label'%>
+  <%= f.collection_select :service_ids, services, :id, :title, {}, multiple: true, class: 'form-control' %>
+  </div>
+
+  <div class="mb-4">
+  <%= f.submit "Добавить заказ", class:'btn btn-primary'%>
+  </div>
+<%end%>
