@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :fetch_services, only: %i[new]
+before_action :fetch_services, only: %i[new edit]
 before_action :set_order!, only: %i[show edit update destroy]
 
   def index
@@ -30,7 +30,7 @@ before_action :set_order!, only: %i[show edit update destroy]
   def edit ; end
 
   def update
-    if @order.update
+    if @order.update order_params
       redirect_to root_path
     else
       render :edit

@@ -1,1 +1,21 @@
-<%= link_to "Добавить новый заказ", new_order_path %>
+        <div class="jumbotron">
+          <h1>Заголовок</h1>
+          <p>Tagline</p>
+          <p>
+            <%= link_to "Добавить новый заказ", new_order_path, class:'btn btn-primary mb-4'%>
+          </p>
+        </div>
+
+<% @orders.each do |order| %>
+  <h4><%= order.client_name %></h4>
+  <p><%= order.car_model %></p>
+  <p><%= order.car_number %></p>
+  <% order.services.each do |service| %>
+    <p><%= service.title + " " + service.price.to_s %> &#8381;</p>
+  <%end%>
+  <p><%= "Итого:#{order.services_sum}"%>&#8381;</p>
+  <%= link_to "show", order_path(order), class:"btn btn-primary"%>
+  <%= link_to "edit", edit_order_path(order), class:"btn btn-warning"%>
+  <%= link_to "destroy", order_path(order), data:{turbo_method: :delete, turbo_confirm:"Вы уверены?"}, class:"btn btn-danger"%>
+
+<%end%>
