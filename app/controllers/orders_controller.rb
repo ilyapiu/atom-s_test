@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 before_action :fetch_services, only: %i[new]
-  
+before_action :set_order!, only: %i[show edit update destroy]
+
   def index
     @orders = Order.all
   end
@@ -19,6 +20,22 @@ before_action :fetch_services, only: %i[new]
     end
   end
 
+  def destroy
+    @order.destroy
+    redirect_to root_path
+  end
+
+  def show ; end
+
+  def edit ; end
+
+  def update
+    if @order.update
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end 
   private
 
   def order_params
@@ -27,5 +44,9 @@ before_action :fetch_services, only: %i[new]
 
   def fetch_services
     @services=Service.all
+  end
+
+  def set_order!
+    @order = Order.find(params[:id])
   end
 end
