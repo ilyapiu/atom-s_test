@@ -1,21 +1,27 @@
-        <div class="jumbotron">
-          <h1>Заголовок</h1>
-          <p>Tagline</p>
-          <p>
-            <%= link_to "Добавить новый заказ", new_order_path, class:'btn btn-primary mb-4'%>
-          </p>
-        </div>
+        <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Учет заказов</h1>
+        <p class="col-md-8 fs-4">Используя это веб-приложение вы можете вести учет заказов вашего сервиса</p>
+        <button class="btn btn-primary btn-lg" type="button">Добавить новый заказ</button>
+      </div>
+    </div>
 
 <% @orders.each do |order| %>
-  <h4><%= order.client_name %></h4>
-  <p><%= order.car_model %></p>
-  <p><%= order.car_number %></p>
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+  <h5 class="card-title"><%= order.client_name %></h5>
+  <h6 class="card-subtitle mb-2 text-muted" ><%= order.car_model + " Номер:" + order.car_number %></h6>
   <% order.services.each do |service| %>
-    <p><%= service.title + " " + service.price.to_s %> &#8381;</p>
+    <div class="card">
+  <div class="card-body">
+    <p><%= service.title + " " + service.price.to_s%>&#8381;</p>
+  </div>
+</div>
   <%end%>
   <p><%= "Итого:#{order.services_sum}"%>&#8381;</p>
   <%= link_to "show", order_path(order), class:"btn btn-primary"%>
   <%= link_to "edit", edit_order_path(order), class:"btn btn-warning"%>
   <%= link_to "destroy", order_path(order), data:{turbo_method: :delete, turbo_confirm:"Вы уверены?"}, class:"btn btn-danger"%>
-
+  </div>
+</div>
 <%end%>
