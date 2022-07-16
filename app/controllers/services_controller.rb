@@ -1,31 +1,29 @@
 class ServicesController < ApplicationController
     before_action :set_service!, only: %i[destroy show edit update]
-    def index
-        @services = Service.all
-      end
-    
+    before_action :set_category!
       def new
         @service = Service.new 
       end
       
       def create
-        @service = Service.new service_params
+        @service = @category.services.build service_params
     
         if @service.save
-          redirect_to root_path
+          redirect_to category_path(@category)
         else
-          render :new
+          
+          render 'categories/show'
         end
       end
     
       def destroy
         @service.destroy
-        redirect_to root_path
+        redirect_to category_path
       end
     
       def show ; end
     
-      def edit ; end
+      def edit ; end 
     
       def update
         if @service.update service_params
@@ -37,11 +35,15 @@ class ServicesController < ApplicationController
       private
     
       def service_params
-        params.require(:service).permit(:name)
+        params.require(:service).permit(:title, :price, worker_ids: [])
       end
     
       def set_service!
         @service = Service.find(params[:id])
       end
 
+      def set_category!
+        @category = Category.find(params[:category_id])
+      end 
+      
 end

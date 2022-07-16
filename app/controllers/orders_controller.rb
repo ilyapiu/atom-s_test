@@ -36,6 +36,7 @@ before_action :set_order!, only: %i[show edit update destroy]
       render :edit
     end
   end 
+  
   private
 
   def order_params

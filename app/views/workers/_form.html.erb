@@ -1,0 +1,19 @@
+<%= form_with model: @worker do |f| %>
+
+  <div class="mb-4 mt-4">
+    <%= f.label :photo%>
+    <%= f.file_field (:photo), placeholder:'Фото', class:'file-form-control' %>
+  </div>
+
+  <div class="mb-4 mt-4">
+    <%= f.label :name%>
+    <%= f.text_field (:name), placeholder:'Имя', class:'form-control' %>
+  </div>
+
+  <div class="mb-4 mt-4">
+    <%= f.label :position%>
+    <%= f.text_field (:position), placeholder:'Должность', class:'form-control' %>
+  </div>
+  
+  <%= f.submit "Добавить работника", class:'btn btn-secondary btn-lg' %>
+<%end%>

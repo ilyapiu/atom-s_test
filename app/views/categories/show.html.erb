@@ -1,0 +1,11 @@
+<h1 class="mb-4"><%= @category.name %></h1>
+
+<hr class="my-3">
+
+<h2 class="mb-3">Добавьте свою услугу</h2>
+
+<%= render 'services/form' , workers: @workers %>
+
+<h2 class="mt-5">Услуги</h2>
+
+<%= render @services %>

@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
 before_action :set_category!, only: %i[destroy show edit update]
+before_action :fetch_workers, only: %i[show]
     def index
         @categories = Category.all
       end
@@ -23,7 +24,10 @@ before_action :set_category!, only: %i[destroy show edit update]
         redirect_to root_path
       end
     
-      def show ; end
+      def show
+        @service = @category.services.build
+        @services = @category.services.order(created_at: :desc )
+      end
     
       def edit ; end
     
@@ -34,13 +38,18 @@ before_action :set_category!, only: %i[destroy show edit update]
           render :edit
         end
       end 
+      
       private
     
       def category_params
-        params.require(:category).permit(:name)
+        params.require(:category).permit(:name, :photo)
       end
     
       def set_category!
         @category = Category.find(params[:id])
+      end
+      
+      def fetch_workers
+        @workers = Worker.all
       end
 end

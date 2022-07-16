@@ -1,0 +1,12 @@
+<% @workers.each do |worker| %>
+  <div class="card mt-4" style="width: 18rem;">
+  <%= image_tag worker.photo, class:"card-img-top"%>
+  <div class="card-body">
+    <h5 class="card-title"><%= worker.name%></h5>
+    <h6 class="card-subtitle mb-2 text-muted"> <%= worker.position%></h6>
+    <%= link_to "Подробнее", worker_path(worker), class:"btn btn-primary"%>
+    <%= link_to "Редактировать", edit_worker_path(worker), class:"btn btn-warning"%>
+    <%= link_to "Удалить", order_path(worker), data:{turbo_method: :delete, turbo_confirm:"Вы уверены?"}, class:"btn btn-danger"%>
+  </div>
+</div>
+<%end%>
