@@ -2,7 +2,7 @@
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Учет заказов</h1>
         <p class="col-md-8 fs-4">Используя это веб-приложение вы можете вести учет заказов вашего сервиса</p>
-        <button class="btn btn-primary btn-lg" type="button">Добавить новый заказ</button>
+        <%= link_to "Добавить новый заказ", new_order_path, class: 'btn btn-primary btn-lg'%>
       </div>
     </div>
 
@@ -19,7 +19,6 @@
 </div>
   <%end%>
   <p><%= "Итого:#{order.services_sum}"%>&#8381;</p>
-  <%= link_to "show", order_path(order), class:"btn btn-primary"%>
   <%= link_to "edit", edit_order_path(order), class:"btn btn-warning"%>
   <%= link_to "destroy", order_path(order), data:{turbo_method: :delete, turbo_confirm:"Вы уверены?"}, class:"btn btn-danger"%>
   </div>

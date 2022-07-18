@@ -1,3 +1,11 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Услуги</h1>
+    <p class="col-md-8 fs-4">В этом разделе вы можете создавать новые категории услуг, добавлять новые услуги</p>
+    <%= link_to "Добавить новую категорию услуг", new_category_path, class: 'btn btn-primary btn-lg'%>
+  </div>
+</div>
+
 <% @categories.each do |category|%>
   <div class="card mt-4" style="width: 18rem;">
    <%= image_tag category.photo,class:"card-img-top"%>

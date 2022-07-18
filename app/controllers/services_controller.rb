@@ -1,6 +1,7 @@
 class ServicesController < ApplicationController
-    before_action :set_service!, only: %i[destroy show edit update]
-    before_action :set_category!
+    before_action :set_service!, only: %i[destroy edit update]
+    before_action :set_category! 
+    before_action :fetch_workers, only: %i[edit update]
       def new
         @service = Service.new 
       end
@@ -20,8 +21,6 @@ class ServicesController < ApplicationController
         @service.destroy
         redirect_to category_path
       end
-    
-      def show ; end
     
       def edit ; end 
     
@@ -45,5 +44,9 @@ class ServicesController < ApplicationController
       def set_category!
         @category = Category.find(params[:category_id])
       end 
+
+      def fetch_workers
+        @workers = Worker.all
+      end
       
 end

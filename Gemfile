@@ -14,6 +14,7 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
+gem "rspec", "~> 3.11"
 
 
 group :development, :test do
@@ -25,4 +26,4 @@ group :development do
 end
 
 
-gem "rspec", "~> 3.11"
+

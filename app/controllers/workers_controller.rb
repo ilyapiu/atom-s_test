@@ -1,4 +1,5 @@
 class WorkersController < ApplicationController
+before_action :set_worker!, only: %i[destroy show edut update]
     def index
         @workers = Worker.all
       end
@@ -39,11 +40,7 @@ class WorkersController < ApplicationController
         params.require(:worker).permit(:photo, :name, :position)
       end
     
-      def fetch_services
-        @services=Service.all
-      end
-    
-      def set_er!
-        @order = Order.find(params[:id])
+      def set_worker!
+        @worker = Worker.find(params[:id])
       end
 end
