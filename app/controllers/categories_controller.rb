@@ -2,7 +2,9 @@ class CategoriesController < ApplicationController
 before_action :set_category!, only: %i[destroy show edit update]
 before_action :fetch_workers, only: %i[show]
     def index
-        @categories = Category.all
+        @categories = Category.order(created_at: :desc)
+
+        
       end
     
       def new
@@ -13,7 +15,7 @@ before_action :fetch_workers, only: %i[show]
         @category = Category.new category_params
     
         if @category.save
-          redirect_to root_path
+          redirect_to categories_path
         else
           render :new
         end
@@ -32,7 +34,7 @@ before_action :fetch_workers, only: %i[show]
       def edit ; end
     
       def update
-        if @category.update
+        if @category.update category_params
           redirect_to root_path
         else
           render :edit

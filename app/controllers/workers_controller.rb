@@ -1,5 +1,5 @@
 class WorkersController < ApplicationController
-before_action :set_worker!, only: %i[destroy show edut update]
+before_action :set_worker!, only: %i[destroy show edit update]
     def index
         @workers = Worker.all
       end
@@ -29,7 +29,7 @@ before_action :set_worker!, only: %i[destroy show edut update]
     
       def update
         if @worker.update worker_params
-          redirect_to root_path
+          redirect_to workers_path
         else
           render :edit
         end
