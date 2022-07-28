@@ -3,7 +3,17 @@ before_action :fetch_services, only: %i[new edit]
 before_action :set_order!, only: %i[show edit update destroy]
 
   def index
-    @orders = Order.all
+    @keys = ['По дате', 'ФИО', 'Модель машины', 'Номер машины']
+
+    if @key == 'ФИО'
+      @orders = Order.order(client_name: :desc)
+    elsif @key == 'Модель машины'
+      @orders = Order.order(auto_model: :desc)
+    elsif @key == 'Номер машины'
+      @orders = Order.order(auto_number: :desc)
+    else
+      @orders = Order.order(created_at: :desc)
+    end
   end
 
   def new

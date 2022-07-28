@@ -3,8 +3,6 @@ before_action :set_category!, only: %i[destroy show edit update]
 before_action :fetch_workers, only: %i[show]
     def index
         @categories = Category.order(created_at: :desc)
-
-        
       end
     
       def new
